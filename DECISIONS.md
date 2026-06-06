@@ -30,5 +30,7 @@ Format:
 - `[03:29]` Implemented the function for the Unhandled classes/categories in the detectorLacks.md in the section 2.E related to advanced infrastructure & performance, including advanced functions that require analysis and reasoning.
 - `[03:49]` All the functions implementd but not showing on server dashboard
 - `[03:54]` Updated the server.py file to take report.html as input 
+- `[04:00]` Updated the detector.py for redirect map function because it wan not showing anything earlier.
+- 
 - 
 - 

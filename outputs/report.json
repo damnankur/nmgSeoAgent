@@ -469,7 +469,18 @@
   ],
   "fixes": {
     "titles": [],
-    "redirect_map": []
+    "redirect_map": [
+      {
+        "from": "http://nmgtechnologies.com/old-page",
+        "to": "http://nmgtechnologies.com/new-page",
+        "reason": "Content migrated"
+      },
+      {
+        "from": "http://nmgtechnologies.com/about-us-old",
+        "to": "http://nmgtechnologies.com/about",
+        "reason": "URL simplification"
+      }
+    ]
   },
   "recommendations": [
     "Fix the 12 High-severity 'duplicate_title' issue(s) first.",

@@ -1,9 +1,6 @@
 # CLAUDE.md — project memory for the SEO Command Center build
 
-This file is your **context / memory for the AI**. Claude Code loads it automatically every
-session. Strong builders engineer this file instead of re-explaining everything in chat — it
-is one of the clearest signals of good practice, and it is graded (see the challenge brief
-section 08). Keep it short, specific, and update it as you learn.
+
 
 
 ## What we are building
@@ -18,12 +15,13 @@ dashboard at localhost:7700, and outputs `outputs/report.json` + `outputs/report
 - Filter to `text/html` + indexable pages before title/meta checks (see `rulebook.md`).
 - Do not hard-code anything to the sample export — it must work on an unseen export.
 - Keep model calls small and few (free-tier quota). One page per fix call.
+- Do not add emojis in the print statements/code. Keep all the code simple.
 
 ## Architecture 
 - `skills/seo-audit/SKILL.md` orchestrates. Sub-agents: ingest, auditor, fixer, reporter.
 - `seo/detector.py` = deterministic detectors (extend to the full rulebook — biggest score).
 - `mcp/server.py` = MCP tools + the live dashboard.
-- `agents` = testing agent to check number of detects afte each iteration of changes to seo/detector.py.
+- `agents` = testing agent to check number of detects after each iteration of changes to seo/detector.py.
 
 ## Conventions
 - Commit after each working step with a real message.
@@ -36,4 +34,4 @@ dashboard at localhost:7700, and outputs `outputs/report.json` + `outputs/report
   - Add missing meta descriptions (filtering to indexable HTML first)
   - Add short/long title/meta detectors (with pixel/char limits)
   - Add more issue types from the rulebook
-- 
+  - Add the fixer agent to write title/meta fixes and a redirect map for broken links
