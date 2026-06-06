@@ -27,4 +27,12 @@ Format per entry:
 - **Prompt:** "Record the previous output in a IntialReportingStatus.md"
 - **For:** reporting the initial status of the project before I started building (for the judges to see the progress).
 - **Revised?** No, it worked on the first try.
-2. ...
+2.
+- **Prompt:** "give analysis of the seo/detector.py . On what different parameters it is currently doing the analysis of the internal_all.csv file"   
+- **For:** understanding the current state of the detector and how it works with the internal_all.csv file.
+- **Revised?** No, it provided a clear analysis of the current state of the detector and how it processes the internal_all.csv file.
+3.
+- **Prompt:**
+- 
+
+
