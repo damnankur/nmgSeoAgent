@@ -26,4 +26,7 @@ Format:
 - `[01:03]` Installed a missing library named jq for proper parsing of session logs.
 - `[02:26]` Did analysis of Current seo/detector.py and found that it was only covering a few issue types vs all the issues in rulebook.md.
 - `[03:10]` Implemented the functions for the Unhandled classes/categories in the detectorLacks.md in the section 2.A and 2.B related to meta-description auditing and heading (H1) analysis.
+- `[03:15]` Implemented the function for the Unhandled classes/categories in the detectorLacks.md in the section 2.C, 2.D related to page depth & indexing strategy, content quality, and advanced infrastructure & performance.
+- `[03:29]` Implemented the function for the Unhandled classes/categories in the detectorLacks.md in the section 2.E related to advanced infrastructure & performance, including advanced functions that require analysis and reasoning.
+- 
 - 

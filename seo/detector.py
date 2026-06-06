@@ -73,6 +73,11 @@ def detect(rows: list[dict]) -> list[dict]:
          if _int(r.get("Title 1 Pixel Width")) > 561 or _int(r.get("Title 1 Length")) > 60],
         "Titles likely truncated in search results.")
 
+    add("title_too_short", "Low",
+        [r["Address"] for r in idx200
+         if (r.get("Title 1", "") or "").strip() and _int(r.get("Title 1 Length")) < 30],
+        "Titles that are too short to be descriptive.")
+
     # --- Meta Descriptions ---
     add("missing_meta_description", "Medium",
         [r["Address"] for r in idx200 if not (r.get("Meta Description 1", "") or "").strip()],
@@ -124,6 +129,17 @@ def detect(rows: list[dict]) -> list[dict]:
     add("redirect", "Medium",
         [r["Address"] for r in rows if 300 <= _int(r.get("Status Code")) <= 399],
         "URLs that redirect (3xx).")
+
+    # redirect_chain: a redirect whose Redirect URL is itself a redirecting URL
+    redirects = {r["Address"]: r.get("Redirect URL", "")
+                 for r in rows if 300 <= _int(r.get("Status Code")) <= 399}
+    chain_urls = [addr for addr, target in redirects.items() if target in redirects]
+    add("redirect_chain", "High", chain_urls, "Redirects that lead to another redirect (chains).")
+
+    # --- Performance ---
+    add("slow_page", "Low",
+        [r["Address"] for r in rows if _float(r.get("Response Time")) > 1.0],
+        "Pages with a response time greater than 1 second.")
 
     # --- Orphan pages ---
     add("orphan_page", "Medium",
