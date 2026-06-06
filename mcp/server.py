@@ -169,6 +169,24 @@ class H(BaseHTTPRequestHandler):
 
 
 def start_dashboard(port=PORT):
+    # Hydrate state from previous report if it exists
+    report_path = os.path.join(OUT_DIR, "report.json")
+    if os.path.exists(report_path):
+        try:
+            with open(report_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                RUN.update({
+                    "site": data.get("site"),
+                    "urls": data.get("urls_crawled", 0),
+                    "summary": data.get("summary"),
+                    "issues": data.get("issues", []),
+                    "fixes": data.get("fixes"),
+                    "recommendations": data.get("recommendations", []),
+                    "status": "done"
+                })
+        except Exception as e:
+            print(f"Warning: Could not hydrate state from {report_path}: {e}")
+
     httpd = ThreadingHTTPServer(("127.0.0.1", port), H)
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
     return httpd

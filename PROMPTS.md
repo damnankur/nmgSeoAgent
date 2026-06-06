@@ -41,7 +41,7 @@ Format per entry:
   section 2.C, 2.D"
 - **For:** further extending the detector to cover the remaining missing functionality related to page depth & indexing strategy, content quality, and advanced infrastructure & performance.
 - **Revised?** No, the implementation was successful as the number of detected issues increased from 8 to 10.
-5. - **Prompt:** "❯ Implemet the functions for the Unhandled classes/categories in the detectorLacks.md in the  
+5. - **Prompt:** "Implemet the functions for the Unhandled classes/categories in the detectorLacks.md in the  
      section 2.E ,use and write advanced functions to call base llm model for anything which     
      needs analysis and reasoning to complete the function/detect the issue."
 - **For:** completing the implementation of the detector to cover all the missing functionality, including advanced functions that require analysis and reasoning.
