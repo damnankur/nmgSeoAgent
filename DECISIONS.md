@@ -24,3 +24,6 @@ Format:
 ## My log
 - `[12:09]` The Settings.json file had some issues with the commands, resolved by claude agent.
 - `[01:03]` Installed a missing library named jq for proper parsing of session logs.
+- `[02:26]` Did analysis of Current seo/detector.py and found that it was only covering a few issue types vs all the issues in rulebook.md.
+- `[03:10]` Implemented the functions for the Unhandled classes/categories in the detectorLacks.md in the section 2.A and 2.B related to meta-description auditing and heading (H1) analysis.
+- 

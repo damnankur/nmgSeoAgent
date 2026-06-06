@@ -104,6 +104,16 @@ def detect(rows: list[dict]) -> list[dict]:
     dup_h1 = [u for urls in by_h1.values() if len(urls) > 1 for u in urls]
     add("duplicate_h1", "Low", dup_h1, "Indexable pages sharing an identical H1.")
 
+    # --- Content & Indexing ---
+    add("thin_content", "Low",
+        [r["Address"] for r in idx200 if _int(r.get("Word Count")) < 200],
+        "Indexable pages with very low word count (thin content).")
+
+    add("non_indexable_but_linked", "Medium",
+        [r["Address"] for r in rows if (r.get("Indexability", "").strip().lower() == "non-indexable")
+         and _int(r.get("Inlinks")) > 0],
+        "Pages marked as Non-Indexable that still have internal links.")
+
     # --- Response codes ---
     add("broken_link", "High",
         [r["Address"] for r in rows if 400 <= _int(r.get("Status Code")) <= 499],

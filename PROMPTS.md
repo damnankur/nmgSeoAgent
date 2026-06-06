@@ -32,7 +32,16 @@ Format per entry:
 - **For:** understanding the current state of the detector and how it works with the internal_all.csv file.
 - **Revised?** No, it provided a clear analysis of the current state of the detector and how it processes the internal_all.csv file.
 3.
-- **Prompt:**
-- 
+- **Prompt:** "Implemet the functions for the Unhandled classes/categories in the detectorLacks.md in the
+  section 2.A and 2.B"
+- **For:** extending the detector to cover the missing functionality related to meta-description auditing and heading (H1) analysis.
+- **Revised?** No, the implementation showed signs of working as number of issues increased in the output from 4 to 8.
+4. - 
+- **Prompt:** "Implement the function for the Unhandled classes/categories in the detectorLacks.md in the
+  section 2.C, 2.D"
+- **For:** further extending the detector to cover the remaining missing functionality related to page depth & indexing strategy, content quality, and advanced infrastructure & performance.
+- **Revised?** No, the implementation was successful as the number of detected issues increased from 8 to 10.
+5. - **Prompt:** "Implement the function for the Unhandled classes/categories in the detectorLacks.md in the
+  section 2.E"
 
 
