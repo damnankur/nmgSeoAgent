@@ -23,5 +23,8 @@ Format per entry:
 ---
 
 ## My prompts
-1. ...
+1.
+- **Prompt:** "Record the previous output in a IntialReportingStatus.md"
+- **For:** reporting the initial status of the project before I started building (for the judges to see the progress).
+- **Revised?** No, it worked on the first try.
 2. ...
