@@ -22,4 +22,5 @@ Format:
 ---
 
 ## My log
-- `[--:--]` ...
+- `[12:09]` The Settings.json file had some issues with the commands, resolved by claude agent.
+- `[01:03]` Installed a missing library named jq for proper parsing of session logs.
