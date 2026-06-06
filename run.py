@@ -47,6 +47,7 @@ def main():
     server.RUN["model_calls"] = 0  # starter does no model calls; champion fixes will add some
     server.RUN["duration_sec"] = round(time.time() - t0, 1)
     server.seo_report()
+    server.seo_fix() # Generate AI fixes
     server.seo_export()
 
     s = server.RUN["summary"]

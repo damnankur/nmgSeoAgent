@@ -23,7 +23,11 @@ MODEL = os.environ.get("RADAR_MODEL", "qwen3.5:9b")
 
 import sys
 sys.path.insert(0, ROOT)
-from seo import detector  # noqa: E402
+import csv
+
+# (Previous imports...)
+from seo import detector, fixer # noqa: E402
+
 
 RUN = {"site": None, "urls": 0, "issues": [], "summary": None, "status": "idle"}
 _subs: list[queue.Queue] = []
@@ -90,6 +94,25 @@ def seo_recommend(recommendations: list) -> dict:
     _emit("recommendations", {"recommendations": recommendations}); return {"count": len(recommendations)}
 
 
+def seo_fix() -> dict:
+    """
+    Generate model-driven fixes for detected issues.
+    - Rewrites titles/metas
+    - Creates redirect map for broken links
+    """
+    if "rows" not in RUN:
+        return {"error": "No data loaded. Call seo_load first."}
+
+    _emit("status", {"message": "Generating AI fixes... please wait."})
+
+    all_urls = [r["Address"] for r in RUN["rows"]]
+    titles, redirects = fixer.run_fixes(MODEL, RUN["issues"], all_urls)
+
+    seo_set_fixes(titles=titles, redirect_map=redirects)
+
+    return {"titles_fixed": len(titles), "redirects_suggested": len(redirects)}
+
+
 def seo_report() -> dict:
     os.makedirs(OUT_DIR, exist_ok=True)
     p = os.path.join(OUT_DIR, "report.json")
@@ -101,6 +124,26 @@ def seo_export() -> dict:
     os.makedirs(OUT_DIR, exist_ok=True)
     p = os.path.join(OUT_DIR, "report.html")
     open(p, "w", encoding="utf-8").write(_render_html(_report_obj()))
+
+    # Export fixes to CSV
+    fixes = _report_obj().get("fixes", {})
+
+    # Titles CSV
+    title_path = os.path.join(OUT_DIR, "fixes_titles.csv")
+    with open(title_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["url", "old", "new"])
+        for t in fixes.get("titles", []):
+            writer.writerow([t.get("url"), t.get("old"), t.get("new")])
+
+    # Redirects CSV
+    redir_path = os.path.join(OUT_DIR, "fixes_redirects.csv")
+    with open(redir_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["from", "to", "reason"])
+        for r in fixes.get("redirect_map", []):
+            writer.writerow([r.get("from"), r.get("to"), r.get("reason")])
+
     _emit("exported", {"path": p}); return {"path": p}
 
 
